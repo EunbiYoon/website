@@ -50,8 +50,8 @@
         <p class="eyebrow">Machine Learning · Generative AI · Intelligent Agents</p>
 
         <h1>
-          I want to become an
-          <span>AI Engineer and ML Engineer.</span>
+          Applying for
+          <span>AI/ML Engineer and Researcher.</span>
         </h1>
 
         <p class="hero-description">
@@ -187,10 +187,10 @@
       <div class="container">
         <div class="showcase-heading"><div><p class="eyebrow">CERTIFICATIONS</p><h2>Industry-recognized AI &amp; ML credentials.</h2></div><p>Certification images can be dropped directly into the cards below.</p></div>
         <div class="certification-grid">
-          <article class="cert-card"><div class="cert-image"><img src="images/aws_ml.png" alt="AWS Machine Learning Engineer Associate certification"><span class="image-fallback">Add AWS certification image</span></div><div class="cert-copy"><p class="company">Amazon Web Services · Sep 2026</p><h3>AWS Certified Machine Learning Engineer – Associate</h3><p>MLA-C01</p></div></article>
-          <article class="cert-card"><div class="cert-image"><img src="images/ibm_ml.png" alt="IBM Deep Learning with TensorFlow certification"><span class="image-fallback">Add IBM certification image</span></div><div class="cert-copy"><p class="company">IBM · Sep 2026</p><h3>Deep Learning with TensorFlow – Advanced</h3><p>ML0120EN</p></div></article>
-          <article class="cert-card"><div class="cert-image"><img src="images/db_aiagent.png" alt="Databricks AI and Generative AI certifications"><span class="image-fallback">Add Databricks certification image</span></div><div class="cert-copy"><p class="company">Databricks · Jun 2026</p><h3>AI Agent Fundamentals &amp; Generative AI Fundamentals</h3><p>Generative AI and agent foundations</p></div></article>
-          <article class="cert-card"><div class="cert-image"><img src="images/db_genai.png" alt="Databricks AI and Generative AI certifications"><span class="image-fallback">Add Databricks certification image</span></div><div class="cert-copy"><p class="company">Databricks · Jun 2026</p><h3>AI Agent Fundamentals &amp; Generative AI Fundamentals</h3><p>Generative AI and agent foundations</p></div></article>
+          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View AWS Machine Learning Engineer Associate certification full size"><img src="images/aws_ml.png" alt="AWS Machine Learning Engineer Associate certification"><span class="image-fallback">Add AWS certification image</span></div><div class="cert-copy"><p class="company">Amazon Web Services · Sep 2026</p><h3>AWS Certified Machine Learning Engineer – Associate</h3><p>MLA-C01</p></div></article>
+          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View IBM Deep Learning with TensorFlow certification full size"><img src="images/ibm_ml.png" alt="IBM Deep Learning with TensorFlow certification"><span class="image-fallback">Add IBM certification image</span></div><div class="cert-copy"><p class="company">IBM · Sep 2026</p><h3>Deep Learning with TensorFlow – Advanced</h3><p>ML0120EN</p></div></article>
+          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View Databricks AI Agent Fundamentals certification full size"><img src="images/db_aiagent.png" alt="Databricks AI and Generative AI certifications"><span class="image-fallback">Add Databricks certification image</span></div><div class="cert-copy"><p class="company">Databricks · Jun 2026</p><h3>AI Agent Fundamentals &amp; Generative AI Fundamentals</h3><p>Generative AI and agent foundations</p></div></article>
+          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View Databricks Generative AI Fundamentals certification full size"><img src="images/db_genai.png" alt="Databricks AI and Generative AI certifications"><span class="image-fallback">Add Databricks certification image</span></div><div class="cert-copy"><p class="company">Databricks · Jun 2026</p><h3>AI Agent Fundamentals &amp; Generative AI Fundamentals</h3><p>Generative AI and agent foundations</p></div></article>
         </div>
       </div>
     </section>
@@ -234,7 +234,7 @@
     <section class="section container contact" id="contact">
       <div class="contact-card">
         <p class="eyebrow">Let’s connect</p>
-        <h2>Looking for a Machine Learning or AI Engineer?</h2>
+        <h2>Let’s build something great together.</h2>
         <p>
           I am seeking full-time Machine Learning Engineer, AI Engineer, LLM Engineer,
           and Research Engineer opportunities beginning around my December 2026 graduation.
@@ -263,8 +263,55 @@
     </div>
   </footer>
 
+  <div class="lightbox-overlay" id="lightbox" hidden>
+    <button class="lightbox-close" type="button" aria-label="Close">✕</button>
+    <img class="lightbox-image" alt="">
+  </div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    (function () {
+      var overlay = document.getElementById("lightbox");
+      var overlayImg = overlay.querySelector(".lightbox-image");
+      var closeBtn = overlay.querySelector(".lightbox-close");
+
+      function openLightbox(img) {
+        overlayImg.src = img.src;
+        overlayImg.alt = img.alt;
+        overlay.hidden = false;
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+      }
+
+      function closeLightbox() {
+        overlay.hidden = true;
+        overlayImg.src = "";
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".cert-image").forEach(function (el) {
+        el.addEventListener("click", function () {
+          var img = el.querySelector("img");
+          if (img) openLightbox(img);
+        });
+        el.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            var img = el.querySelector("img");
+            if (img) openLightbox(img);
+          }
+        });
+      });
+
+      overlay.addEventListener("click", function (e) {
+        if (e.target === overlay) closeLightbox();
+      });
+      closeBtn.addEventListener("click", closeLightbox);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !overlay.hidden) closeLightbox();
+      });
+    })();
   </script>
 </body>
 </html>

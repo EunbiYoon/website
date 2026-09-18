@@ -922,12 +922,7 @@ h3 {
 .project-category { margin-top: 64px; }
 .project-category > h3 { margin-bottom: 24px; font-size: clamp(1.7rem, 3vw, 2.6rem); }
 .project-category + .project-category { margin-top: 88px; }
-.certification-section { background: var(--dark); color: white; }
-.certification-section h2, .certification-section h3 { color: white; }
-.certification-section .section-heading > div:last-child > p { color: #aebcd0; }
 .certification-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.certification-grid article { min-height: 220px; padding: 28px; background: var(--dark-soft); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); }
-.certification-grid article > p:last-child { margin: 0; color: #aebcd0; }
 @media (max-width: 980px) { .certification-grid { grid-template-columns: 1fr; } }
 
 
@@ -939,9 +934,8 @@ body{background:linear-gradient(180deg,#fff 0%,#fbfcff 34%,#fff 100%)}
 .card-image,.cert-image{position:relative;overflow:hidden;background:linear-gradient(135deg,#e9e6ff,#e9f5ff 52%,#ffeef6);isolation:isolate}.card-image{aspect-ratio:16/9}.card-image img,.cert-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}.visual-card:hover .card-image img,.cert-card:hover .cert-image img{transform:scale(1.045)}.card-image img:not([src]),.cert-image img:not([src]){display:none}.image-fallback{position:absolute;inset:0;display:grid;place-items:center;padding:30px;text-align:center;font-family:"Manrope",sans-serif;font-weight:800;font-size:1.25rem;color:#44506b;background:linear-gradient(135deg,rgba(226,220,255,.95),rgba(222,244,255,.92) 55%,rgba(255,226,241,.9));z-index:-1}.metric-badge{position:absolute;right:16px;bottom:16px;padding:8px 12px;border-radius:999px;background:rgba(9,17,36,.84);color:#fff;font-size:.78rem;font-weight:800;backdrop-filter:blur(10px)}
 .card-body{padding:28px}.card-body h3{font-size:clamp(1.35rem,2vw,1.85rem)}.card-meta{display:flex;justify-content:space-between;gap:14px;margin-bottom:13px;color:#6758e8;font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.card-body>p{color:var(--muted)}.card-cta{display:inline-flex;align-items:center;gap:7px;margin-top:24px;color:#4e55df;font-weight:800}.card-cta b{transition:transform .2s ease}.visual-card:hover .card-cta b{transform:translate(3px,-3px)}
 .research-card:before,.ml-card:before{content:"";height:4px;background:linear-gradient(90deg,#7758ff,#4ca5ff,#f37bb6)}
-.certification-section{background:linear-gradient(135deg,#0b1220 0%,#151c38 45%,#251b4c 100%);color:white;position:relative;overflow:hidden}.certification-section:after{content:"";position:absolute;width:500px;height:500px;right:-160px;top:-180px;border-radius:50%;background:radial-gradient(circle,rgba(137,111,255,.32),transparent 67%)}.certification-section .section-heading,.certification-section .certification-grid{position:relative;z-index:1}.certification-section h2,.certification-section h3{color:white}.certification-section .section-heading>div:last-child>p{color:#c6cde0}.certification-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.cert-card{overflow:hidden;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.18);backdrop-filter:blur(12px);transition:transform .28s ease,border-color .28s ease,background .28s ease}.cert-card:hover{transform:translateY(-7px) rotate(-.25deg);border-color:rgba(188,176,255,.62);background:rgba(255,255,255,.13)}.cert-image{aspect-ratio:4/3;background:linear-gradient(135deg,#2a2858,#183d68 60%,#49234f)}.cert-image .image-fallback{color:#eef1ff;background:linear-gradient(135deg,#34306c,#20527d 55%,#6a345f)}.cert-copy{padding:23px}.cert-copy .company{color:#c9c2ff}.cert-copy>p:last-child{color:#bbc5dc}
-@media(max-width:900px){.visual-card-grid,.certification-grid{grid-template-columns:1fr}.cert-card{display:grid;grid-template-columns:minmax(180px,.75fr) 1fr}.cert-image{aspect-ratio:auto;min-height:220px}}
-@media(max-width:600px){.card-body{padding:22px}.card-meta{flex-direction:column;gap:3px}.cert-card{display:block}.cert-image{aspect-ratio:4/3;min-height:0}}
+@media(max-width:900px){.visual-card-grid,.certification-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.card-body{padding:22px}.card-meta{flex-direction:column;gap:3px}}
 
 /* Warm lilac / rose / peach palette override */
 :root{--accent:#b45f8d;--accent-dark:#8e466d;--dark:#211a22;--dark-soft:#30252f;--soft:#fff9f7;--line:#eadfdf;--muted:#6f6269;--ink:#332a30;--ink-strong:#241d21}
@@ -953,12 +947,6 @@ body{background:linear-gradient(180deg,#fffdfb 0%,#fff8f6 34%,#fffdfb 100%)}
 .image-fallback{color:#6b4f5c;background:linear-gradient(135deg,rgba(248,218,228,.96),rgba(250,232,207,.94) 55%,rgba(238,221,236,.92))}
 .card-meta{color:#ad5c83}.card-cta{color:#a44f78}
 .research-card:before,.ml-card:before{background:linear-gradient(90deg,#c96893,#e7a36f,#b58ab9)}
-.certification-section{background:linear-gradient(135deg,#241b21 0%,#3a2833 48%,#50313d 100%)}
-.certification-section:after{background:radial-gradient(circle,rgba(224,139,169,.27),transparent 67%)}
-.cert-card:hover{border-color:rgba(241,190,207,.65)}
-.cert-image{background:linear-gradient(135deg,#5a3545,#704a43 58%,#61415f)}
-.cert-image .image-fallback{color:#fff8f6;background:linear-gradient(135deg,#674052,#805548 55%,#714d6c)}
-.cert-copy .company{color:#f1bdcf}
 
 /* ===== Pastel card-forward refresh ===== */
 :root {
@@ -1135,4 +1123,54 @@ h1 span, .gradient-text {
 @media (max-width: 980px) {
   .hero-photo { max-width: 380px; margin-inline: auto; }
   .hero-photo-caption { left: 14px; }
+}
+
+/* ---------- certification lightbox ---------- */
+.cert-image {
+  cursor: zoom-in;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(10, 12, 20, .82);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox-overlay[hidden] {
+  display: none;
+}
+
+.lightbox-image {
+  max-width: min(90vw, 900px);
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 12px;
+  background: var(--paper);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255,255,255,.18);
 }
