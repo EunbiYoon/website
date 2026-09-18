@@ -1098,3 +1098,41 @@ h1 span, .gradient-text {
 .contact-card {
   background: linear-gradient(135deg, rgba(237,235,248,.78), rgba(235,243,240,.78));
 }
+
+/* ---------- hero photo (right column) ---------- */
+.hero-photo {
+  position: relative;
+  align-self: center;
+}
+
+.hero-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  box-shadow: var(--shadow);
+}
+
+.hero-photo-caption {
+  position: absolute;
+  left: 18px;
+  bottom: -16px;
+  margin: 0;
+  padding: 8px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink-strong);
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: .74rem;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(20, 24, 16, .08);
+}
+
+@media (max-width: 980px) {
+  .hero-photo { max-width: 380px; margin-inline: auto; }
+  .hero-photo-caption { left: 14px; }
+}

@@ -1,0 +1,65 @@
+/* Scoped styles for long-form project detail content, matching the site's design tokens */
+.detail-card{
+  padding:48px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  text-align:left;
+}
+.detail-card h2{
+  margin-top:44px;
+  padding-bottom:10px;
+  border-bottom:2px solid var(--accent);
+  font-size:clamp(1.35rem,2.4vw,1.9rem);
+  color:var(--ink-strong);
+}
+.detail-card h2:first-child{margin-top:0}
+.detail-card p{color:var(--muted);font-size:1.02rem;line-height:1.75}
+.detail-card strong{color:var(--ink-strong)}
+.detail-card em{color:var(--ink)}
+.detail-card ul,.detail-card ol{color:var(--muted);padding-left:22px;line-height:1.75}
+.detail-card li+li{margin-top:8px}
+.detail-card li::marker{color:var(--accent);font-weight:700}
+.detail-card code{
+  font-family:var(--mono);
+  font-size:.88em;
+  padding:2px 6px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:6px;
+  color:var(--accent-dark);
+}
+.detail-card a{color:var(--accent);font-weight:700;border-bottom:1px solid transparent}
+.detail-card a:hover{color:var(--accent-dark);border-bottom-color:var(--accent-dark)}
+.detail-card table{
+  width:100%;
+  margin-top:14px;
+  border-collapse:collapse;
+  font-size:.92rem;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:12px;
+}
+.detail-card th{
+  padding:12px 14px;
+  text-align:left;
+  background:var(--soft);
+  color:var(--ink-strong);
+  font-family:var(--mono);
+  font-size:.74rem;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--line);
+}
+.detail-card td{
+  padding:11px 14px;
+  border-bottom:1px solid var(--line);
+  color:var(--ink);
+}
+.detail-card tr:last-child td{border-bottom:none}
+.detail-card tr:hover td{background:var(--soft)}
+@media (max-width:720px){
+  .detail-card{padding:26px}
+  .detail-card table{display:block;overflow-x:auto;white-space:nowrap}
+}

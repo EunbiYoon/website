@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../styles/main.css"><title>Multimodal Small-Object Detection | Eunbi Yoon</title></head><body><main class="section container"><a class="card-cta" href="../index.html#ml-projects">← Back to portfolio</a><p class="eyebrow" style="margin-top:70px">Machine Learning Project</p><h1 style="font-size:clamp(2.7rem,6vw,5rem)">Multimodal Small-Object Detection</h1><p class="hero-description">Faster R-CNN and CLIP for language-guided small-object localization.</p><div class="contact-card" style="margin-top:50px;text-align:left">
+<h2>Overview</h2>
+<p><em>Finding Waldo: Multimodal Approaches to Small Object Detection in Cluttered Scenes</em> (with Nancy Patel) treats "Where's Waldo?" as a controlled benchmark for small-object detection under maximum visual clutter. Waldo is small (32–256px), surrounded by hundreds of visually similar distractor characters, and defined by a precise conjunction of visual attributes (red-and-white stripes, glasses, blue jeans) rather than coarse category membership — making evaluation unambiguous while stress-testing localization.</p>
+
+<h2>Method</h2>
+<p>A two-stage, three-part pipeline:</p>
+<ul>
+<li><strong>Stage 1 — Region proposal:</strong> A Faster R-CNN with a ResNet-50-FPN backbone and custom small-object anchors ({8,16,32,64,128}px) generates region proposals. An auxiliary <strong>attribute loss</strong>, computed via a frozen CLIP ViT-B/32 image encoder against the target's text embedding, is added to the training objective (L = L_cls + L_box + λ_attr·L_attr) to push the backbone toward features aligned with Waldo's full attribute description.</li>
+<li><strong>Stage 2 — Semantic reranking:</strong> Each of the top-K proposal crops is re-encoded by the same frozen CLIP image encoder and scored by cosine similarity against the text query (18 phrasings were swept, e.g. "Waldo wearing red and white striped shirt").</li>
+<li><strong>Stage 3 — Score fusion:</strong> Final score = detector confidence + 0.1 × CLIP similarity, with the fusion weight chosen by grid search on the validation set.</li>
+</ul>
+
+<h2>Results</h2>
+<table style="width:100%;border-collapse:collapse;margin-top:10px">
+<tr style="border-bottom:1px solid #ccc"><th style="text-align:left;padding:6px 8px">Method</th><th style="text-align:left;padding:6px 8px">Mean IoU</th><th style="text-align:left;padding:6px 8px">Top-1@0.5</th><th style="text-align:left;padding:6px 8px">IoU=0 (failure) rate</th></tr>
+<tr><td style="padding:6px 8px">WaldoNet baseline (YOLOv9)</td><td style="padding:6px 8px">—</td><td style="padding:6px 8px">0.541</td><td style="padding:6px 8px">—</td></tr>
+<tr><td style="padding:6px 8px">Faster R-CNN (ours, no CLIP)</td><td style="padding:6px 8px">0.556</td><td style="padding:6px 8px">0.680</td><td style="padding:6px 8px">0.24</td></tr>
+<tr><td style="padding:6px 8px"><strong>+ CLIP rerank (best config)</strong></td><td style="padding:6px 8px"><strong>0.567</strong></td><td style="padding:6px 8px"><strong>0.680</strong></td><td style="padding:6px 8px"><strong>0.16</strong></td></tr>
+</table>
+<p style="margin-top:10px">The best configuration improves Top-1@0.5 over the published WaldoNet baseline (0.541) and substantially reduces the complete-failure rate. Ablations over query phrasing show the model is sensitive to how precisely the text names Waldo's attributes: explicit mention of the stripe pattern and Waldo's name both help, since CLIP's pretraining encodes that association. Learning rate (best: 1e-4) had the single largest effect, and the attribute loss weight (λ_attr = 0.1) gave a consistent but secondary boost over no attribute loss (0.522 IoU).</p>
+
+<h2>Failure analysis</h2>
+<p>~60% of failures are confusion with background characters whose clothing partially matches the query (e.g., red stripes without glasses); ~40% are complete mislocalization when Waldo is very small and densely surrounded by distractors, where both detection and CLIP similarity signals collapse toward noise. The identified limiting factor is the post-hoc reranking architecture — CLIP scores crops after detection rather than shaping proposal generation, unlike end-to-end grounded detectors such as MDETR or OWLv2.</p>
+
+<h2>Code</h2>
+<p><a href="https://github.com/nancypatel12/Finding-Waldo-Multimodal-Detection" target="_blank" rel="noopener">github.com/nancypatel12/Finding-Waldo-Multimodal-Detection</a></p>
+
+<h2>Tech stack</h2>
+<p>PyTorch, Faster R-CNN (ResNet-50-FPN), CLIP ViT-B/32, COCO-style annotations</p>
+</div></main></body></html>

@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../styles/main.css"><title>TRACE | Eunbi Yoon</title></head><body><main class="section container"><a class="card-cta" href="../index.html#research">← Back to portfolio</a><p class="eyebrow" style="margin-top:70px">AI Research</p><h1 style="font-size:clamp(2.7rem,6vw,5rem)">TRACE</h1><p class="hero-description">Solver-guided preference optimization for strategic SLM training.</p><div class="contact-card" style="margin-top:50px;text-align:left">
+<h2>TRACE: Teacher-separated Reasoning and Actions with Counterfactual Evaluation</h2>
+<p>Frontier LLMs can <em>explain</em> how an agent should respond to another player's behavior, yet often fail to <em>execute</em> that strategy. Against tit-for-tat (an opponent that copies the model's previous move), three frontier models — Haiku 4.5, Gemma 3-27B, and Llama 3.3-70B — earn a cumulative reward of only 1.50, exactly matching an untrained Qwen 2.5-3B. That leaves standard trajectory distillation with no better strategic actions to teach a small model, since the "teacher" plays no better than the "student."</p>
+
+<h2>Key idea: split the action teacher from the reasoning teacher</h2>
+<p>TRACE constructs DPO preference pairs from two different sources instead of one:</p>
+<ul>
+<li><strong>Action label:</strong> an exact game solver computes the ex-post best response — the action that would have earned the highest reward against the opponent's <em>recorded</em> move (e.g., optimal bid-shading in a first-price auction, or the take-the-rest proposal in bargaining).</li>
+<li><strong>Reasoning label:</strong> a frontier model (Haiku 4.5) paraphrases supporting reasoning for the solver-selected action, explicitly forbidden from referencing the opponent's simultaneous move — it must reason only from history through the prior round, so the trajectory stays decision-time faithful.</li>
+<li><strong>Counterfactual horizon filter:</strong> an exact rollout rejects locally attractive actions (e.g., defecting against a cooperator) whose return over the remaining horizon is actually worse than the recorded trajectory — preventing "myopically correct but strategically harmful" labels from entering the training set.</li>
+</ul>
+<p>A leakage audit (regex + manual inspection across 688 final oracle rounds) confirmed the reasoning paraphraser does not leak the opponent's hidden current-round move.</p>
+
+<h2>Results</h2>
+<table style="width:100%;border-collapse:collapse;margin-top:10px">
+<tr style="border-bottom:1px solid #ccc"><th style="text-align:left;padding:6px 8px">Model</th><th style="text-align:left;padding:6px 8px">In-domain reward</th><th style="text-align:left;padding:6px 8px">Held-out reward</th><th style="text-align:left;padding:6px 8px">Tit-for-tat reward</th></tr>
+<tr><td style="padding:6px 8px">Qwen 2.5-3B base</td><td style="padding:6px 8px">14.04</td><td style="padding:6px 8px">−1.45</td><td style="padding:6px 8px">1.50</td></tr>
+<tr><td style="padding:6px 8px">Qwen 2.5-3B + frontier-action DPO</td><td style="padding:6px 8px">13.51</td><td style="padding:6px 8px">−0.23</td><td style="padding:6px 8px">1.50</td></tr>
+<tr><td style="padding:6px 8px"><strong>Qwen 2.5-3B + TRACE-RW</strong></td><td style="padding:6px 8px">13.93</td><td style="padding:6px 8px"><strong>+1.91</strong></td><td style="padding:6px 8px"><strong>14.06</strong></td></tr>
+<tr><td style="padding:6px 8px">Haiku 4.5 (frontier reference)</td><td style="padding:6px 8px">14.60</td><td style="padding:6px 8px">+2.05</td><td style="padding:6px 8px">1.50</td></tr>
+</table>
+<p style="margin-top:10px">Across twelve two-player game environments, TRACE raises the 3B student's tit-for-tat reward from 1.50 to 14.06 — well above every frontier reference — and turns held-out reward positive (−1.45 → +1.91), with the held-out gain concentrated in the first-price auction, where solver-labelled data is available (base auction reward −8.67 → +4.97, near Haiku's +5.82).</p>
+
+<h2>Why filtering frontier actions alone doesn't work</h2>
+<p>An earlier "Hypothesis B" pipeline pinned chosen-side actions to frontier play and filtered pairs by reasoning-action coupling (does the chosen action match the argmax of the model's own stated expected values?). This <em>reduced</em> both coupling and reward, because the training distribution was too narrow (5 of 8 in-domain games sit on a single cooperate-or-defect axis) and filtering only shrank the chosen-side distribution further rather than correcting a wrong prior. TRACE resolves this by replacing the action label itself — with the game solver's best response — rather than filtering an already-flawed label source.</p>
+
+<h2>Adapter merging</h2>
+<p>Two specialist LoRA adapters — an auction/negotiation-heavy one (AUX) and a repeated-game-heavy one (ALL) — were simply averaged (W_merge = ½W_AUX + ½W_ALL) without further training, reaching 13.92 ID / +1.75 HO reward, within 0.16 HO reward of the purpose-trained reweighted variant (13.93 / +1.91) — showing specialist capabilities can be combined without a new optimization run.</p>
+
+<h2>Limitations</h2>
+<p>Each game cell uses only n=12 episodes, so differences under ~0.2 cumulative reward should be read as ties; results cover one 3B base model, one solver family, and deterministic training opponents; and TRACE does not surpass Haiku in aggregate in-domain reward or reasoning-action coupling. Stochastic opponents would require estimated (rather than exact) counterfactuals, and games like tic-tac-toe need a sequential solver such as minimax.</p>
+</div></main></body></html>

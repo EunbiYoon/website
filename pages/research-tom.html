@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../styles/main.css"><title>Theory of Mind for Multi-Agent Strategic Reasoning | Eunbi Yoon</title></head><body><main class="section container"><a class="card-cta" href="../index.html#research">← Back to portfolio</a><p class="eyebrow" style="margin-top:70px">AI Research</p><h1 style="font-size:clamp(2.7rem,6vw,5rem)">Theory of Mind for Multi-Agent Strategic Reasoning</h1><p class="hero-description">Opponent modeling, memory, self-play, GRPO and PPO.</p><div class="contact-card" style="margin-top:50px;text-align:left">
+<h2>Motivation</h2>
+<p>Multi-agent LLM systems (AutoGen, OWL, GAIA-style assistants) mostly target collaboration or assistance settings where all agents share a goal. Real-world agents, however, often act in non-cooperative or negotiation settings that require strategic reasoning. Meanwhile, LLM agents are trained with single-agent RL paradigms (PPO, DPO, GRPO): the agent generates token trajectories, gets a reward, and is optimized — with no interaction with other agents during training. At test time, deployment is inherently multi-agent: every agent's action affects the others and the environment is shaped by that interaction. This training/test mismatch means pretraining approximates only some forms of human strategic reasoning, and this fails to transfer to genuine multi-agent interaction — even with chain-of-thought prompting.</p>
+
+<h2>Research goal</h2>
+<p>Introduce multi-agent RL primitives into single-agent RL so agents trained in isolation can act effectively in society — while keeping standard single-agent techniques (PPO, DPO, GRPO) rather than building a full multi-agent RL stack from scratch. The target behavior: get the best payoff in cooperative settings, competitive settings, repeated games, and negotiation.</p>
+
+<h2>Datasets and models</h2>
+<p><strong>Training</strong> uses simple matrix games with dense rewards, full information, and few agents (Battle of the Sexes, First-Price Sealed-Bid Auction, Iterated Prisoner's Dilemma, Negotiation Games). <strong>Testing</strong> uses complex, sparser-reward, partial-information language environments (Avalon, Rock-Paper-Scissors, Repeated Matching Pennies, the Ultimatum Game) to evaluate generalization of the learned strategic reasoning.</p>
+<p>Model families (DeepSeek and Qwen, 7B scale) were compared across three reasoning conditions — no reasoning (base instruct model), prompt-based reasoning (SCoT), and learned reasoning (DeepSeek-R1 / QwQ-32B) — to isolate the effect of reasoning from model scale and family.</p>
+
+<h2>Pipeline</h2>
+<ol>
+<li><strong>Outcome-based pairing:</strong> generate multiple trajectories, compare final payoffs — higher payoff is chosen, lower is rejected.</li>
+<li><strong>Equilibrium-guided labeling:</strong> label trajectories by game-theoretic reasoning (e.g., Nash equilibrium bid shading in the auction), not just lucky outcomes.</li>
+<li><strong>Self-play with ELO filtering:</strong> rank strategies by ELO to automatically separate strong from weak play.</li>
+<li><strong>Opponent-conditioned contrastive pairs:</strong> same state, different reasoning — opponent-aware reasoning is chosen over greedy/naive reasoning.</li>
+<li><strong>DPO</strong> fine-tunes on these preference pairs; <strong>GRPO with multi-agent rollouts</strong> then samples candidate actions, simulates opponent responses, computes rewards, and updates toward the best action.</li>
+<li><strong>Opponent modeling levels</strong> for evaluation: no modeling (baseline) → fixed opponent assumption → adaptive modeling → recursive Theory-of-Mind reasoning.</li>
+<li><strong>Inference-time strategies:</strong> prompt-based opponent reasoning (opponent history in the prompt) or explicit opponent simulation (predict the opponent's next move, then choose an action).</li>
+</ol>
+
+<h2>Example DPO pair (opponent-aware reasoning, Battle of the Sexes)</h2>
+<p>After two rounds where the opponent consistently chose Football while the model chose Opera (payoff 0 both times), the <strong>chosen</strong> response reasons that the opponent's revealed preference makes coordination more valuable than the model's own preference, and switches to Football (expected reward 2/round). The <strong>rejected</strong> response greedily picks Opera because it has the highest nominal payoff (3), ignoring the opponent's revealed behavior — and earns 0.</p>
+
+<h2>Results</h2>
+<p>Multi-agent GRPO rollouts improved strategic decision-making on a 4×4 Tic-Tac-Toe testbed against TinyLlama: reward for the first-move player rose over training while approx. regret fell early, though with some later fluctuation. Radar-chart analysis of strategic personality (HEXACO-style traits inferred from behavior against Always-Cooperate / Always-Defect / Tit-for-Tat / Alternating opponents) showed a clear progression: DeepSeek Base was cooperative but easily exploited; DeepSeek + SCoT was more opponent-aware but still cooperation-leaning; Qwen Base was fair but rigid; Qwen + SCoT was the most balanced, adaptive, and strategically flexible of the four.</p>
+
+<h2>Evaluation metrics</h2>
+<p>Reward (payoff improvement across multi-agent interactions) and regret (gap between the chosen action and the optimal strategy), estimated via GRPO rollout evaluation: sample candidate actions, simulate opponent responses, compute reward &amp; regret, update toward the best action.</p>
+
+<h2>Related work grounding this project</h2>
+<p>Motivated by findings that multi-agent collaboration frameworks (AutoGen, OWL) outperform single-agent approaches but mostly target cooperative settings; that LLM bargaining and negotiation benchmarks show strategic reasoning is genuinely hard for LLMs (e.g., OG-Narrator raising deal rate from 26.67% to 88.88% in buyer-seller bargaining); that PPO/DPO/GRPO are the standard single-agent RL toolchain; and that behavioral game-theory evaluations show model scale and CoT prompting do not reliably improve strategic reasoning on their own — motivating explicit opponent-aware training rather than relying on scale alone.</p>
+</div></main></body></html>
