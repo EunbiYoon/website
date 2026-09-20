@@ -32,15 +32,16 @@
 
       <div class="nav-links">
         <a href="#about">About</a>
+        <a href="#skills">Skills</a>
         <a href="#research">AI Research</a>
         <a href="#ml-projects">ML Projects</a>
         <a href="#certifications">Certifications</a>
         <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </div>
 
-      <a class="nav-resume" href="resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+      <a class="nav-resume" href="files/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
     </nav>
   </header>
 
@@ -66,7 +67,7 @@
 
         <div class="hero-actions">
           <a class="button button-primary" href="#research">View my work <span>→</span></a>
-          <a class="button button-secondary" href="resume.pdf" target="_blank" rel="noreferrer">Download resume</a>
+          <a class="button button-secondary" href="files/resume.pdf" target="_blank" rel="noreferrer">Download resume</a>
         </div>
 
         <div class="social-links" aria-label="Professional profiles">
@@ -108,12 +109,48 @@
       </div>
     </section>
 
+    <section class="section container" id="skills">
+      <div class="section-heading">
+        <div class="section-label light">
+          <span>06</span>
+          <p>Technical toolkit</p>
+        </div>
+        <div>
+          <h2>Skills for the complete ML lifecycle</h2>
+          <p>From experimentation and evaluation to APIs, pipelines, and deployment.</p>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <article>
+          <p class="skill-number">01</p>
+          <h3>Machine Learning & AI</h3>
+          <p>PyTorch, TensorFlow, Scikit-learn, reinforcement learning, LLM agents, preference optimization, computer vision, multimodal learning</p>
+        </article>
+        <article>
+          <p class="skill-number">02</p>
+          <h3>Data & Experimentation</h3>
+          <p>Python, SQL, Pandas, NumPy, Spark, Hadoop, Flink, model evaluation, data preprocessing, statistical analysis</p>
+        </article>
+        <article>
+          <p class="skill-number">03</p>
+          <h3>ML Systems & Cloud</h3>
+          <p>AWS, Docker, Kubernetes, Airflow, Linux, Git, distributed training, GPU experimentation, reproducible pipelines</p>
+        </article>
+        <article>
+          <p class="skill-number">04</p>
+          <h3>Software Engineering</h3>
+          <p>Backend APIs, Python, JavaScript, Node.js, PostgreSQL, MongoDB, MySQL, Elasticsearch, system design, production debugging</p>
+        </article>
+      </div>
+    </section>
+
     <section class="section showcase-section research-section" id="research">
       <div class="container">
         <div class="showcase-heading"><div><p class="eyebrow">AI RESEARCH</p><h2>Researching intelligent agents and strategic reasoning.</h2></div><p>LLM agents, preference optimization, multi-agent learning, and evaluation.</p></div>
         <div class="visual-card-grid">
-          <a class="visual-card research-card" href="pages/research-trace.html"><div class="card-image"><img src="images/trace-research.jpg" alt="TRACE research preview"><span class="image-fallback">TRACE · Strategic SLM Training</span></div><div class="card-body"><div class="card-meta"><span>LLM Agents · DPO</span><span>2026</span></div><h3>TRACE: Separating Action and Reasoning Teachers for Strategic SLM Training</h3><p>Solver-guided preference optimization with counterfactual rollouts and LoRA adapter merging for strategic 3B language models.</p><div class="tag-list"><span>DPO</span><span>LoRA</span><span>Game Theory</span></div><span class="card-cta">Explore research <b>↗</b></span></div></a>
-          <a class="visual-card research-card" href="pages/research-tom.html"><div class="card-image"><img src="images/theory-of-mind.jpg" alt="Theory of Mind research preview"><span class="image-fallback">Theory of Mind · Multi-Agent RL</span></div><div class="card-body"><div class="card-meta"><span>Multi-Agent RL · ToM</span><span>2026</span></div><h3>Theory of Mind for Multi-Agent Strategic Reasoning</h3><p>Opponent modeling, memory, and self-play optimization using GRPO and PPO for strategic multi-agent interactions.</p><div class="tag-list"><span>GRPO</span><span>PPO</span><span>Self-Play</span></div><span class="card-cta">Explore research <b>↗</b></span></div></a>
+          <a class="visual-card research-card" href="pages/research-trace.html"><div class="card-image"><img src="images/trace.png" alt="TRACE research preview"><span class="image-fallback">TRACE · Strategic SLM Training</span></div><div class="card-body"><div class="card-meta"><span>LLM Agents · DPO</span><span>2026</span></div><h3>TRACE: Separating Action and Reasoning Teachers for Strategic SLM Training</h3><p>Solver-guided preference optimization with counterfactual rollouts and LoRA adapter merging for strategic 3B language models.</p><div class="tag-list"><span>DPO</span><span>LoRA</span><span>Game Theory</span></div><span class="card-cta">Explore research <b>↗</b></span></div></a>
+          <a class="visual-card research-card" href="pages/research-tom.html"><div class="card-image"><img src="images/tom.png" alt="Theory of Mind research preview"><span class="image-fallback">Theory of Mind · Multi-Agent RL</span></div><div class="card-body"><div class="card-meta"><span>Multi-Agent RL · ToM</span><span>2026</span></div><h3>Theory of Mind for Multi-Agent Strategic Reasoning</h3><p>Opponent modeling, memory, and self-play optimization using GRPO and PPO for strategic multi-agent interactions.</p><div class="tag-list"><span>GRPO</span><span>PPO</span><span>Self-Play</span></div><span class="card-cta">Explore research <b>↗</b></span></div></a>
         </div>
       </div>
     </section>
@@ -122,8 +159,20 @@
       <div class="container">
         <div class="showcase-heading"><div><p class="eyebrow">MACHINE LEARNING PROJECTS</p><h2>End-to-end ML systems built around real tasks.</h2></div><p>Computer vision, multimodal learning, retrieval, and grounded generation.</p></div>
         <div class="visual-card-grid">
-          <a class="visual-card ml-card" href="pages/project-waldo.html"><div class="card-image"><img src="images/waldo-project.jpg" alt="Multimodal object detection project preview"><span class="image-fallback">Faster R-CNN + CLIP</span><div class="metric-badge">68% Top-1@0.5</div></div><div class="card-body"><div class="card-meta"><span>Computer Vision · VLM</span><span>2025</span></div><h3>Multimodal Small-Object Detection with Faster R-CNN &amp; CLIP</h3><p>Language-guided localization and semantic reranking for small objects in highly cluttered scenes.</p><div class="tag-list"><span>Faster R-CNN</span><span>CLIP</span><span>PyTorch</span></div><span class="card-cta">View project <b>↗</b></span></div></a>
-          <a class="visual-card ml-card" href="pages/project-rag.html"><div class="card-image"><img src="images/rag-project.jpg" alt="Document-grounded RAG project preview"><span class="image-fallback">Document-Grounded RAG</span></div><div class="card-body"><div class="card-meta"><span>RAG · NLP · Retrieval</span><span>2026</span></div><h3>Document-Grounded RAG QA Assistant</h3><p>Embedding retrieval, citation-grounded generation, hallucination analysis, and evidence-aware abstention.</p><div class="tag-list"><span>LangGraph</span><span>LlamaIndex</span><span>Chroma</span></div><span class="card-cta">View project <b>↗</b></span></div></a>
+          <a class="visual-card ml-card" href="pages/project-waldo.html"><div class="card-image"><img src="images/waldo.png" alt="Multimodal object detection project preview"><span class="image-fallback">Faster R-CNN + CLIP</span><div class="metric-badge">68% Top-1@0.5</div></div><div class="card-body"><div class="card-meta"><span>Computer Vision · VLM</span><span>2025</span></div><h3>Multimodal Small-Object Detection with Faster R-CNN &amp; CLIP</h3><p>Language-guided localization and semantic reranking for small objects in highly cluttered scenes.</p><div class="tag-list"><span>Faster R-CNN</span><span>CLIP</span><span>PyTorch</span></div><span class="card-cta">View project <b>↗</b></span></div></a>
+          <a class="visual-card ml-card" href="pages/project-rag.html"><div class="card-image"><img src="images/rag.png" alt="Document-grounded RAG project preview"><span class="image-fallback">Document-Grounded RAG</span></div><div class="card-body"><div class="card-meta"><span>RAG · NLP · Retrieval</span><span>2026</span></div><h3>Document-Grounded RAG QA Assistant</h3><p>Embedding retrieval, citation-grounded generation, hallucination analysis, and evidence-aware abstention.</p><div class="tag-list"><span>LangGraph</span><span>LlamaIndex</span><span>Chroma</span></div><span class="card-cta">View project <b>↗</b></span></div></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section certification-section" id="certifications">
+      <div class="container">
+        <div class="showcase-heading"><div><p class="eyebrow">CERTIFICATIONS</p><h2>Industry-recognized AI &amp; ML credentials.</h2></div><p>Certification images can be dropped directly into the cards below.</p></div>
+        <div class="certification-grid">
+          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View AWS Machine Learning Engineer Associate certification full size"><img src="images/aws_ml.png" alt="AWS Machine Learning Engineer Associate certification"><span class="image-fallback">Add AWS certification image</span></div><div class="cert-copy"><p class="company">Amazon Web Services · Sep 2026</p><h3>AWS Certified Machine Learning Engineer – Associate</h3><p>MLA-C01</p></div></article>
+          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View IBM Deep Learning with TensorFlow certification full size"><img src="images/ibm_ml.png" alt="IBM Deep Learning with TensorFlow certification"><span class="image-fallback">Add IBM certification image</span></div><div class="cert-copy"><p class="company">IBM · Sep 2026</p><h3>Deep Learning with TensorFlow – Advanced</h3><p>ML0120EN</p></div></article>
+          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View Databricks AI Agent Fundamentals certification full size"><img src="images/db_aiagent.png" alt="Databricks AI and Generative AI certifications"><span class="image-fallback">Add Databricks certification image</span></div><div class="cert-copy"><p class="company">Databricks · Jun 2026</p><h3>AI Agent Fundamentals &amp; Generative AI Fundamentals</h3><p>Generative AI and agent foundations</p></div></article>
+          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View Databricks Generative AI Fundamentals certification full size"><img src="images/db_genai.png" alt="Databricks AI and Generative AI certifications"><span class="image-fallback">Add Databricks certification image</span></div><div class="cert-copy"><p class="company">Databricks · Jun 2026</p><h3>AI Agent Fundamentals &amp; Generative AI Fundamentals</h3><p>Generative AI and agent foundations</p></div></article>
         </div>
       </div>
     </section>
@@ -168,67 +217,38 @@
               <div class="tag-list"><span>Python</span><span>TensorFlow</span><span>OpenCV</span><span>SQL</span><span>Docker</span></div>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
 
+    <section class="section showcase-section" id="education">
+      <div class="container">
+        <div class="showcase-heading"><div><p class="eyebrow">EDUCATION</p><h2>Academic foundation in computer science and engineering.</h2></div><p>Graduate and undergraduate coursework spanning AI, systems, and software engineering.</p></div>
+        <div class="experience-list">
           <article class="experience-card education-card">
             <div class="experience-date">Sep 2024 — Dec 2026</div>
             <div class="experience-main">
-              <p class="company">University of Massachusetts Amherst</p>
-              <h3>M.S. in Computer Science</h3>
+              <p class="company"><a href="https://www.umass.edu/" target="_blank" rel="noreferrer" style="color:inherit;text-decoration:none">University of Massachusetts Amherst</a></p>
+              <h3>M.S. in Computer Science, AI Concentration</h3>
               <p>
-                Graduate coursework in reinforcement learning, machine learning,
-                neural networks, artificial intelligence, and systems for data science.
+                GPA: 3.93. Graduate coursework in Systems for Data Science, Machine Learning,
+                Neural Networks, Advanced Text as Data, and Artificial Intelligence.
+              </p>
+            </div>
+          </article>
+
+          <article class="experience-card education-card">
+            <div class="experience-date">Mar 2016 — Feb 2020</div>
+            <div class="experience-main">
+              <p class="company"><a href="https://www.khu.ac.kr/eng/" target="_blank" rel="noreferrer" style="color:inherit;text-decoration:none">Kyung Hee University</a></p>
+              <h3>B.E. in Electronics Engineering, Software Engineering Track</h3>
+              <p>
+                Coursework in Object Oriented Programming, Programming Structures,
+                Computer Architecture, and Digital Signal Processing.
               </p>
             </div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section class="section certification-section" id="certifications">
-      <div class="container">
-        <div class="showcase-heading"><div><p class="eyebrow">CERTIFICATIONS</p><h2>Industry-recognized AI &amp; ML credentials.</h2></div><p>Certification images can be dropped directly into the cards below.</p></div>
-        <div class="certification-grid">
-          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View AWS Machine Learning Engineer Associate certification full size"><img src="images/aws_ml.png" alt="AWS Machine Learning Engineer Associate certification"><span class="image-fallback">Add AWS certification image</span></div><div class="cert-copy"><p class="company">Amazon Web Services · Sep 2026</p><h3>AWS Certified Machine Learning Engineer – Associate</h3><p>MLA-C01</p></div></article>
-          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View IBM Deep Learning with TensorFlow certification full size"><img src="images/ibm_ml.png" alt="IBM Deep Learning with TensorFlow certification"><span class="image-fallback">Add IBM certification image</span></div><div class="cert-copy"><p class="company">IBM · Sep 2026</p><h3>Deep Learning with TensorFlow – Advanced</h3><p>ML0120EN</p></div></article>
-          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View Databricks AI Agent Fundamentals certification full size"><img src="images/db_aiagent.png" alt="Databricks AI and Generative AI certifications"><span class="image-fallback">Add Databricks certification image</span></div><div class="cert-copy"><p class="company">Databricks · Jun 2026</p><h3>AI Agent Fundamentals &amp; Generative AI Fundamentals</h3><p>Generative AI and agent foundations</p></div></article>
-          <article class="cert-card"><div class="cert-image" role="button" tabindex="0" aria-label="View Databricks Generative AI Fundamentals certification full size"><img src="images/db_genai.png" alt="Databricks AI and Generative AI certifications"><span class="image-fallback">Add Databricks certification image</span></div><div class="cert-copy"><p class="company">Databricks · Jun 2026</p><h3>AI Agent Fundamentals &amp; Generative AI Fundamentals</h3><p>Generative AI and agent foundations</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section container" id="skills">
-      <div class="section-heading">
-        <div class="section-label light">
-          <span>06</span>
-          <p>Technical toolkit</p>
-        </div>
-        <div>
-          <h2>Skills for the complete ML lifecycle</h2>
-          <p>From experimentation and evaluation to APIs, pipelines, and deployment.</p>
-        </div>
-      </div>
-
-      <div class="skills-grid">
-        <article>
-          <p class="skill-number">01</p>
-          <h3>Machine Learning & AI</h3>
-          <p>PyTorch, TensorFlow, Scikit-learn, reinforcement learning, LLM agents, preference optimization, computer vision, multimodal learning</p>
-        </article>
-        <article>
-          <p class="skill-number">02</p>
-          <h3>Data & Experimentation</h3>
-          <p>Python, SQL, Pandas, NumPy, Spark, Hadoop, Flink, model evaluation, data preprocessing, statistical analysis</p>
-        </article>
-        <article>
-          <p class="skill-number">03</p>
-          <h3>ML Systems & Cloud</h3>
-          <p>AWS, Docker, Kubernetes, Airflow, Linux, Git, distributed training, GPU experimentation, reproducible pipelines</p>
-        </article>
-        <article>
-          <p class="skill-number">04</p>
-          <h3>Software Engineering</h3>
-          <p>Backend APIs, Python, JavaScript, Node.js, PostgreSQL, MongoDB, MySQL, Elasticsearch, system design, production debugging</p>
-        </article>
       </div>
     </section>
 
@@ -245,6 +265,7 @@
           <a class="button button-secondary" href="https://linkedin.com/in/eunbiyoon0717" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
         <a class="contact-email" href="mailto:eunbiyoon@umass.edu">eunbiyoon@umass.edu</a>
+        <a class="contact-email" href="tel:+14133997241">+1 413-399-7241</a>
       </div>
     </section>
   </main>
